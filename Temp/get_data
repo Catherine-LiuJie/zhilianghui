@@ -1,6 +1,5 @@
-# -*- coding: utf-8 -*-
 """
-批量获取ETF日线数据（2007-01-04至今）- 使用 akshare（完整历史数据）
+批量获取ETF日线数据（2007-01-04至今）- 使用 akshare
 """
 
 import akshare as ak
@@ -11,8 +10,383 @@ from datetime import datetime
 
 # ================== 配置区域 ==================
 TARGET_STOCK_LIST = [
-    "510210.SH", "510290.SH", "510180.SH", "510880.SH", "510050.SH",
-    # ... 你的完整列表（此处省略，实际运行时请保留全部377只）
+    "510210.SH",
+    "510290.SH",
+    "510180.SH",
+    "510880.SH",
+    "510050.SH",
+    "510230.SH",
+    "510010.SH",
+    "510030.SH",
+    "510630.SH",
+    "510060.SH",
+    "510020.SH",
+    "510130.SH",
+    "510170.SH",
+    "510410.SH",
+    "510150.SH",
+    "510720.SH",
+    "512770.SH",
+    "159981.SZ",
+    "510300.SH",
+    "563360.SH",
+    "589800.SH",
+    "589600.SH",
+    "588770.SH",
+    "588700.SH",
+    "588200.SH",
+    "588000.SH",
+    "589180.SH",
+    "589700.SH",
+    "588830.SH",
+    "588030.SH",
+    "589200.SH",
+    "159652.SZ",
+    "159870.SZ",
+    "512120.SH",
+    "515170.SH",
+    "512400.SH",
+    "512530.SH",
+    "561580.SH",
+    "512580.SH",
+    "512100.SH",
+    "512330.SH",
+    "515150.SH",
+    "512950.SH",
+    "515900.SH",
+    "510160.SH",
+    "562000.SH",
+    "510500.SH",
+    "515800.SH",
+    "512010.SH",
+    "159933.SZ",
+    "562310.SH",
+    "562320.SH",
+    "515180.SH",
+    "159930.SZ",
+    "159928.SZ",
+    "159929.SZ",
+    "159752.SZ",
+    "159768.SZ",
+    "159825.SZ",
+    "159790.SZ",
+    "159936.SZ",
+    "159938.SZ",
+    "159940.SZ",
+    "159939.SZ",
+    "159903.SZ",
+    "159902.SZ",
+    "159915.SZ",
+    "159912.SZ",
+    "159836.SZ",
+    "159270.SZ",
+    "159292.SZ",
+    "159256.SZ",
+    "159261.SZ",
+    "159773.SZ",
+    "159804.SZ",
+    "159814.SZ",
+    "159966.SZ",
+    "159967.SZ",
+    "159628.SZ",
+    "159905.SZ",
+    "159906.SZ",
+    "159901.SZ",
+    "159973.SZ",
+    "159698.SZ",
+    "159203.SZ",
+    "159695.SZ",
+    "159843.SZ",
+    "159993.SZ",
+    "159625.SZ",
+    "159697.SZ",
+    "159859.SZ",
+    "159909.SZ",
+    "159949.SZ",
+    "159916.SZ",
+    "159910.SZ",
+    "516160.SH",
+    "516560.SH",
+    "516550.SH",
+    "159350.SZ",
+    "159707.SZ",
+    "515630.SH",
+    "512660.SH",
+    "512980.SH",
+    "512670.SH",
+    "512880.SH",
+    "515030.SH",
+    "512800.SH",
+    "512690.SH",
+    "512170.SH",
+    "516970.SH",
+    "515220.SH",
+    "515910.SH",
+    "512390.SH",
+    "515160.SH",
+    "512380.SH",
+    "560050.SH",
+    "513850.SH",
+    "512550.SH",
+    "159399.SZ",
+    "159397.SZ",
+    "159400.SZ",
+    "159593.SZ",
+    "516150.SH",
+    "159852.SZ",
+    "159605.SZ",
+    "515210.SH",
+    "516950.SH",
+    "159861.SZ",
+    "517050.SH",
+    "562800.SH",
+    "159766.SZ",
+    "560080.SH",
+    "515920.SH",
+    "159998.SZ",
+    "159997.SZ",
+    "159736.SZ",
+    "159996.SZ",
+    "159865.SZ",
+    "513090.SH",
+    "159896.SZ",
+    "159819.SZ",
+    "515250.SH",
+    "512290.SH",
+    "515300.SH",
+    "159837.SZ",
+    "513220.SH",
+    "159786.SZ",
+    "159691.SZ",
+    "516800.SH",
+    "516510.SH",
+    "159972.SZ",
+    "159869.SZ",
+    "515400.SH",
+    "513820.SH",
+    "513530.SH",
+    "513550.SH",
+    "560500.SH",
+    "515100.SH",
+    "159788.SZ",
+    "513200.SH",
+    "159851.SZ",
+    "515700.SH",
+    "159745.SZ",
+    "511020.SH",
+    "159328.SZ",
+    "513750.SH",
+    "517900.SH",
+    "512040.SH",
+    "512710.SH",
+    "159520.SZ",
+    "515980.SH",
+    "511380.SH",
+    "515050.SH",
+    "515000.SH",
+    "159336.SZ",
+    "515650.SH",
+    "515950.SH",
+    "512650.SH",
+    "515790.SH",
+    "159992.SZ",
+    "515200.SH",
+    "515880.SH",
+    "159816.SZ",
+    "515860.SH",
+    "515960.SH",
+    "515750.SH",
+    "515580.SH",
+    "513910.SH",
+    "563010.SH",
+    "517520.SH",
+    "520600.SH",
+    "560810.SH",
+    "562570.SH",
+    "159309.SZ",
+    "513780.SH",
+    "515760.SH",
+    "159807.SZ",
+    "159743.SZ",
+    "517300.SH",
+    "561130.SH",
+    "159811.SZ",
+    "159748.SZ",
+    "159692.SZ",
+    "513070.SH",
+    "513360.SH",
+    "515260.SH",
+    "516830.SH",
+    "159758.SZ",
+    "159738.SZ",
+    "516820.SH",
+    "517800.SH",
+    "561100.SH",
+    "159638.SZ",
+    "561220.SH",
+    "511160.SH",
+    "517160.SH",
+    "513980.SH",
+    "159750.SZ",
+    "560800.SH",
+    "159510.SZ",
+    "563230.SH",
+    "159792.SZ",
+    "159781.SZ",
+    "159623.SZ",
+    "159796.SZ",
+    "520990.SH",
+    "520660.SH",
+    "159516.SZ",
+    "560280.SH",
+    "562990.SH",
+    "512200.SH",
+    "513120.SH",
+    "513310.SH",
+    "560980.SH",
+    "563060.SH",
+    "159355.SZ",
+    "563320.SH",
+    "561980.SH",
+    "159667.SZ",
+    "562550.SH",
+    "562860.SH",
+    "563300.SH",
+    "560170.SH",
+    "560700.SH",
+    "159335.SZ",
+    "159325.SZ",
+    "520510.SH",
+    "159546.SZ",
+    "561010.SH",
+    "159200.SZ",
+    "511580.SH",
+    "562050.SH",
+    "159207.SZ",
+    "159209.SZ",
+    "159233.SZ",
+    "562080.SH",
+    "560120.SH",
+    "563580.SH",
+    "561680.SH",
+    "511180.SH",
+    "511060.SH",
+    "510810.SH",
+    "510200.SH",
+    "511270.SH",
+    "588710.SH",
+    "589720.SH",
+    "588780.SH",
+    "551000.SH",
+    "511130.SH",
+    "588790.SH",
+    "589550.SH",
+    "511100.SH",
+    "511070.SH",
+    "588910.SH",
+    "530530.SH",
+    "159363.SZ",
+    "159976.SZ",
+    "159657.SZ",
+    "159995.SZ",
+    "159530.SZ",
+    "159566.SZ",
+    "159732.SZ",
+    "159755.SZ",
+    "159378.SZ",
+    "159259.SZ",
+    "159263.SZ",
+    "159201.SZ",
+    "159636.SZ",
+    "159569.SZ",
+    "159570.SZ",
+    "159280.SZ",
+    "159265.SZ",
+    "512760.SH",
+    "513730.SH",
+    "518880.SH",
+    "511520.SH",
+    "159649.SZ",
+    "159650.SZ",
+    "511090.SH",
+    "511030.SH",
+    "513900.SH",
+    "159537.SZ",
+    "159241.SZ",
+    "562060.SH",
+    "159985.SZ",
+    "513400.SH",
+    "520580.SH",
+    "513080.SH",
+    "159561.SZ",
+    "517180.SH",
+    "159687.SZ",
+    "511260.SH",
+    "511360.SH",
+    "560860.SH",
+    "511220.SH",
+    "513190.SH",
+    "159519.SZ",
+    "516640.SH",
+    "516110.SH",
+    "159887.SZ",
+    "512070.SH",
+    "513140.SH",
+    "159891.SZ",
+    "159586.SZ",
+    "512480.SH",
+    "561360.SH",
+    "159611.SZ",
+    "515230.SH",
+    "159883.SZ",
+    "512890.SH",
+    "512220.SH",
+    "563180.SH",
+    "517080.SH",
+    "513050.SH",
+    "562500.SH",
+    "159761.SZ",
+    "510900.SH",
+    "513970.SH",
+    "513170.SH",
+    "513060.SH",
+    "159892.SZ",
+    "159545.SZ",
+    "159920.SZ",
+    "520500.SH",
+    "513330.SH",
+    "520940.SH",
+    "159726.SZ",
+    "159239.SZ",
+    "159506.SZ",
+    "513690.SH",
+    "159316.SZ",
+    "520840.SH",
+    "513320.SH",
+    "520880.SH",
+    "513920.SH",
+    "520980.SH",
+    "517380.SH",
+    "513180.SH",
+    "159980.SZ",
+    "513880.SH",
+    "513290.SH",
+    "159941.SZ",
+    "159509.SZ",
+    "518680.SH",
+    "159529.SZ",
+    "513630.SH",
+    "515450.SH",
+    "159822.SZ",
+    "159502.SZ",
+    "159518.SZ",
+    "513500.SH",
+    "513650.SH",
+    "513800.SH",
+    "159329.SZ",
+
+    # 稳健现金（3只）
+    "511010.SH", "511880.SH","159934.SZ"
 ]
 
 START_DATE = "20070104"
@@ -20,7 +394,7 @@ END_DATE = datetime.now().strftime("%Y%m%d")
 OUTPUT_DIR = "etf_data"
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-# ================== 名称获取（可选，失败不影响） ==================
+# ================== 名称获取 ==================
 def get_all_etf_names():
     """获取全市场ETF代码->名称映射（东方财富源）"""
     try:
@@ -37,18 +411,11 @@ def get_all_etf_names():
 def get_etf_daily_akshare(symbol, start_date, end_date, name_dict=None):
     """
     使用 akshare 的 fund_etf_hist_em 获取 ETF 日线数据（自上市日起）
-    :param symbol: 带后缀的基金代码，如 "510210.SH"
-    :param start_date: 开始日期，格式 "YYYYMMDD"
-    :param end_date: 结束日期，格式 "YYYYMMDD"
-    :param name_dict: 名称字典，用于填充股票名称
-    :return: (原始DataFrame, 基金名称)
     """
-    # 提取纯数字代码（akshare 不需要后缀）
     base_code = symbol.replace(".SH", "").replace(".SZ", "")
     fund_name = name_dict.get(base_code, symbol) if name_dict else symbol
 
     try:
-        # period="daily" 日线, adjust="qfq" 前复权（保证历史收益率连续）
         df = ak.fund_etf_hist_em(
             symbol=base_code,
             period="daily",
@@ -70,17 +437,14 @@ def get_etf_daily_akshare(symbol, start_date, end_date, name_dict=None):
 # ================== 数据清洗与标准化 ==================
 def transform_to_standard(raw_df, symbol, fund_name):
     """
-    将 akshare 返回的原始 DataFrame 转换为统一的输出格式
+    将原始DataFrame转换为统一输出格式，包含换手率，无市值列
     """
     if raw_df.empty:
         return raw_df
 
-    # 复制一份，避免修改原数据
     df = raw_df.copy()
 
-    # akshare fund_etf_hist_em 返回的列名示例：
-    # 日期,开盘,收盘,最高,最低,成交量,成交额,振幅,涨跌幅,涨跌额,换手率
-    # 我们只提取需要的列，并重命名为英文，便于后续处理
+    # 所需列映射（包含换手率）
     required_columns = {
         '日期': 'date',
         '开盘': 'open',
@@ -88,9 +452,9 @@ def transform_to_standard(raw_df, symbol, fund_name):
         '最高': 'high',
         '最低': 'low',
         '成交量': 'volume',
-        '成交额': 'amount'
+        '成交额': 'amount',
+        '换手率': 'turnover'
     }
-    # 检查需要的列是否都存在
     missing = [col for col in required_columns if col not in df.columns]
     if missing:
         print(f"警告：{symbol} 缺少列 {missing}，跳过")
@@ -98,22 +462,20 @@ def transform_to_standard(raw_df, symbol, fund_name):
 
     df = df[list(required_columns.keys())].rename(columns=required_columns)
 
-    # 日期转换为 datetime 并排序
+    # 日期处理
     df['date'] = pd.to_datetime(df['date'])
     df = df.sort_values('date').reset_index(drop=True)
 
-    # 数值列转换（akshare 返回的已经是数字类型，但保险再转换一次）
-    for col in ['open', 'high', 'low', 'close', 'volume', 'amount']:
+    # 数值转换
+    for col in ['open', 'high', 'low', 'close', 'volume', 'amount', 'turnover']:
         df[col] = pd.to_numeric(df[col], errors='coerce')
 
-    # 计算前收盘价（用于复权校验，这里仅作占位）
+    # 计算前收盘价
     df['pre_close'] = df['close'].shift(1).fillna(0)
 
-    # 添加股票信息
+    # 添加股票信息（无市值列）
     df['stock_code'] = symbol
     df['stock_name'] = fund_name
-    df['float_mv'] = 0      # 流通市值（ETF 通常为0，或可用基金份额替代，这里留空）
-    df['total_mv'] = 0      # 总市值
 
     # 重命名为最终中文列名
     final_df = df.rename(columns={
@@ -125,15 +487,14 @@ def transform_to_standard(raw_df, symbol, fund_name):
         'pre_close': '前收盘价',
         'volume': '成交量',
         'amount': '成交额',
+        'turnover': '换手率',
         'stock_code': '股票代码',
-        'stock_name': '股票名称',
-        'float_mv': '流通市值',
-        'total_mv': '总市值'
+        'stock_name': '股票名称'
     })
 
-    # 调整列顺序
+
     column_order = ['股票代码', '股票名称', '交易日期', '开盘价', '最高价', '最低价',
-                    '收盘价', '前收盘价', '成交量', '成交额', '流通市值', '总市值']
+                    '收盘价', '前收盘价', '成交量', '成交额', '换手率']
     return final_df[column_order]
 
 def save_to_csv(df, symbol):
@@ -150,7 +511,7 @@ def save_to_csv(df, symbol):
 def main():
     print(f"开始处理 {len(TARGET_STOCK_LIST)} 只基金，日期范围：{START_DATE} 至 {END_DATE}")
 
-    # 获取名称映射（可选）
+
     name_dict = get_all_etf_names()
 
     success_count = 0
@@ -159,7 +520,6 @@ def main():
     for i, symbol in enumerate(TARGET_STOCK_LIST, 1):
         print(f"\n[{i}/{len(TARGET_STOCK_LIST)}] 正在处理 {symbol} ...")
 
-        # 获取原始数据
         raw_df, fund_name = get_etf_daily_akshare(symbol, START_DATE, END_DATE, name_dict)
 
         if raw_df.empty:
@@ -167,18 +527,15 @@ def main():
             fail_list.append(symbol)
             continue
 
-        # 清洗转换
         std_df = transform_to_standard(raw_df, symbol, fund_name)
         if std_df.empty:
             print(f"{symbol} 清洗后无数据，加入失败列表")
             fail_list.append(symbol)
             continue
 
-        # 保存
         save_to_csv(std_df, symbol)
         success_count += 1
 
-        # 礼貌性暂停，避免请求过快
         if i % 10 == 0:
             print(f"\n已处理 {i} 只，暂停 5 秒...")
             time.sleep(5)
@@ -190,5 +547,5 @@ def main():
         print("你可以稍后单独重试这些基金（可能因成立时间晚或无数据）")
 
 if __name__ == "__main__":
-    time.sleep(2)  # 稍等片刻，避免启动过快
+    time.sleep(2)
     main()
